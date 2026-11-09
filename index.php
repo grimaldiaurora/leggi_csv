@@ -38,27 +38,17 @@
         <body>
         <?php
             $file = fopen("log.csv", "r");
-            if(!$file){ // Equivale a $file === false
+            if(!$file){ 
                 die("Errore nell'apertura del file");
-                // die($msg) interrompe l'esecuzione dello script 
-                // viene stampato a schermo il messaggio $msg
             }
-            // Non serve avere un ramo else perché in caso di errore
-            // lo script viene interrotto
-
-            // Se il file esiste e viene aperto correttamente:
-            while(!feof($file)){ // feof($file) === false
+            while(!feof($file)){ 
                 $row = fgets($file);
 
-                // Verifichiamo che la riga non sia vuota prima di elaborarla
                 if(trim($row) !== "") {
-                    // Si usa explode con "," come separatore per ottenere l'array dei campi
                     $data = explode(",", $row);
 
                     echo "<tr>";
-                    // Cicliamo gli elementi dell'array per creare le celle <td>
                     foreach($data as $cell) {
-                        // htmlspecialchars impedisce problemi di formattazione o script malevoli
                         echo "<td>" . htmlspecialchars(trim($cell)) . "</td>";
                     }
                     echo "</tr>";
